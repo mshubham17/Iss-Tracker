@@ -1,0 +1,52 @@
+:root { --fg:#f2f4f6; --muted:#c3ccd5; --faint:rgba(255,255,255,.1); --panel:rgba(5,7,10,.55); }
+* { box-sizing: border-box; }
+html, body { margin:0; height:100%; background:#05070a; color:var(--fg); font-family: "Inter", ui-sans-serif, system-ui, sans-serif; font-weight:400; overflow:hidden; -webkit-font-smoothing:antialiased; }
+#globe { position:fixed; inset:0; }
+[hidden] { display:none !important; }
+
+#hud { position:fixed; top:20px; left:20px; width:min(280px, calc(100vw - 40px)); padding:22px; background:rgba(8,11,15,.82); border:1px solid rgba(255,255,255,.14); border-radius:16px; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+h1 { margin:0 0 6px; font-size:.75rem; font-weight:400; letter-spacing:.32em; display:flex; align-items:center; gap:10px; }
+.dot { width:5px; height:5px; border-radius:50%; background:#444; }
+.dot.on { background:var(--fg); animation:blink 2.4s ease-in-out infinite; }
+@keyframes blink { 50% { opacity:.3; } }
+#over { margin:0 0 28px; color:var(--muted); font-size:.85rem; min-height:1.3em; }
+dl { margin:0; display:grid; grid-template-columns:1fr 1fr; gap:18px 16px; }
+dt { font-size:.6rem; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); }
+dd { margin:4px 0 0; font-size:.9rem; font-variant-numeric:tabular-nums; }
+#crew { margin-top:24px; font-size:.7rem; color:var(--muted); line-height:1.6; }
+.btns { display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:28px; }
+button { font:inherit; font-size:.65rem; text-transform:uppercase; letter-spacing:.18em; padding:4px 0; color:var(--muted); background:none; border:0; border-bottom:1px solid transparent; cursor:pointer; transition:color .2s, border-color .2s; }
+button:hover { color:var(--fg); }
+button[aria-pressed="true"] { color:var(--fg); border-bottom-color:var(--fg); }
+button:focus-visible, input:focus-visible { outline:1px solid var(--fg); outline-offset:3px; }
+.muted { color:var(--muted); font-size:.7rem; margin:12px 0 0; line-height:1.5; }
+
+#you { margin-top:28px; padding-top:24px; border-top:1px solid var(--faint); }
+#you h2 { margin:0 0 6px; font-size:.6rem; font-weight:400; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); }
+.state { margin:0 0 18px; font-size:.85rem; }
+.state.up { color:var(--fg); } .state.down { color:var(--muted); }
+
+#welcome { position:fixed; inset:0; z-index:10; display:flex; align-items:center; justify-content:center; background:rgba(5,7,10,.85); backdrop-filter:blur(12px); padding:16px; }
+#w-card { width:min(360px,100%); }
+#w-card h2 { margin:0 0 12px; font-size:1.4rem; font-weight:300; }
+#w-card p { margin:0 0 28px; color:var(--muted); font-size:.85rem; line-height:1.6; }
+#w-card .muted { margin:14px 0 0; min-height:1.2em; }
+.primary { width:100%; padding:12px; font-size:.7rem; color:var(--bg,#05070a); background:var(--fg); border:0; border-radius:999px; }
+.primary:hover { color:#05070a; opacity:.85; }
+.or { text-align:center; color:var(--muted); font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; margin:24px 0 16px; }
+.row { display:flex; gap:12px; align-items:center; border-bottom:1px solid var(--faint); }
+input { flex:1; min-width:0; font:inherit; font-size:.9rem; padding:8px 0; color:var(--fg); background:none; border:0; }
+input:focus-visible { outline:none; }
+.row:focus-within { border-bottom-color:var(--fg); }
+#w-results { list-style:none; margin:8px 0 0; padding:0; }
+#w-results button { width:100%; text-align:left; text-transform:none; letter-spacing:0; font-size:.8rem; padding:8px 0; }
+.link { margin-top:20px; }
+
+#banner { position:fixed; top:24px; left:50%; transform:translateX(-50%); z-index:5; max-width:min(520px, calc(100vw - 40px)); padding:10px 20px; font-size:.78rem; font-weight:400; letter-spacing:.06em; text-align:center; color:var(--fg); background:#0b0f14; border:1px solid rgba(255,255,255,.4); border-radius:999px; box-shadow:0 4px 24px rgba(0,0,0,.6); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+#banner.soon { border-color:#fff; }
+#banner.now { background:var(--fg); color:#05070a; border-color:var(--fg); animation:none; }
+@media (max-width:700px) { #banner { top:auto; bottom:20px; } #hud { top:12px; left:12px; } }
+
+.loc { display:block; width:100%; margin-top:24px; padding:10px; text-align:center; color:var(--fg); border:1px solid rgba(255,255,255,.4); border-radius:999px; }
+.loc:hover { background:var(--fg); color:#05070a; }
+.btns { margin-top:20px; }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ISS Live Globe</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="globe"></div>
+  <div id="banner" role="status" aria-live="polite" hidden></div>
+  <aside id="hud">
+    <h1><span id="live" class="dot"></span>ISS</h1>
+    <p id="over">Locating…</p>
+    <dl>
+      <div><dt>Latitude</dt><dd id="lat">--</dd></div>
+      <div><dt>Longitude</dt><dd id="lon">--</dd></div>
+      <div><dt>Altitude</dt><dd id="alt">--</dd></div>
+      <div><dt>Speed</dt><dd id="spd">--</dd></div>
+      <div><dt>Sunlight</dt><dd id="vis">--</dd></div>
+      <div><dt>Footprint</dt><dd id="fp">--</dd></div>
+    </dl>
+    <section id="you" hidden>
+      <h2>From <span id="you-name">you</span></h2>
+      <p id="you-state" class="state"></p>
+      <dl>
+        <div><dt>Distance</dt><dd id="u-dist">--</dd></div>
+        <div><dt>Look toward</dt><dd id="u-dir">--</dd></div>
+        <div><dt>Elevation</dt><dd id="u-el">--</dd></div>
+        <div><dt>Next pass</dt><dd id="u-pass">--</dd></div>
+      </dl>
+      <p id="u-pass-detail" class="muted"></p>
+    </section>
+    <div id="crew"></div>
+    <button id="change" class="loc">Enter your location</button>
+    <div class="btns">
+      <button id="follow" aria-pressed="true">Follow</button>
+      <button id="orbit" aria-pressed="true">Orbit</button>
+      <button id="spin" aria-pressed="false">Rotate</button>
+    </div>
+    <p id="status" class="muted"></p>
+  </aside>
+  <div id="welcome" role="dialog" hidden aria-modal="true" aria-labelledby="w-title">
+    <form id="w-card" autocomplete="off">
+      <h2 id="w-title">Where are you?</h2>
+      <p>Tell us your location and we'll show where the ISS is relative to you: distance, direction to look, and when it next passes overhead.</p>
+      <button type="button" id="w-geo" class="primary">Use my current location</button>
+      <div class="or">or search for a place</div>
+      <div class="row">
+        <input id="w-q" type="text" placeholder="City, e.g. Mumbai" aria-label="City or place" />
+        <button type="submit">Search</button>
+      </div>
+      <ul id="w-results"></ul>
+      <p id="w-msg" class="muted" role="status"></p>
+      <button type="button" id="w-skip" class="link">Close</button>
+    </form>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
