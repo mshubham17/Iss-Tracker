@@ -37,7 +37,7 @@ const world = Globe()($('globe'))
   .objectLat('lat').objectLng('lng').objectAltitude('alt').objectFacesSurface(true)
   .objectThreeObject(() => makeISS())
   .objectLabel(() => 'ISS · click to follow')
-  .onObjectClick(() => { follow = true; $('follow').setAttribute('aria-pressed', true); if (iss) update(); });
+  .onObjectClick(() => { setMode('follow'); });
 
 world.controls().autoRotateSpeed = 0.6;
 world.pointOfView({ lat: 20, lng: 78, altitude: 2.4 });
@@ -239,7 +239,7 @@ function setLocation(loc, save = true) {
   world.pointsData([{ lat: loc.lat, lng: loc.lng, name: loc.name || 'You' }]);
   lastPass = 0; pass = null;
   if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission();
-  follow = false; $('follow').setAttribute('aria-pressed', false);
+  setMode(null);
   world.pointOfView({ lat: loc.lat, lng: loc.lng, altitude: 1.8 }, 1200);
   if (iss) update();
 }
@@ -291,11 +291,19 @@ function toggle(id, get, set) {
   const b = $(id);
   b.addEventListener('click', () => { const v = !get(); set(v); b.setAttribute('aria-pressed', v); });
 }
-toggle('follow', () => follow, v => { follow = v; if (v && iss) update(); });
 toggle('orbit', () => showOrbit, v => { showOrbit = v; drawOrbit(); });
-toggle('spin', () => world.controls().autoRotate, v => { world.controls().autoRotate = v; if (v) { follow = false; $('follow').setAttribute('aria-pressed', false); } });
+// Follow and Rotate both drive the camera, so only one can be on at a time.
+function setMode(mode) {   // 'follow' | 'spin' | null
+  follow = mode === 'follow';
+  world.controls().autoRotate = mode === 'spin';
+  $('follow').setAttribute('aria-pressed', follow);
+  $('spin').setAttribute('aria-pressed', mode === 'spin');
+  if (follow && iss) update();
+}
+$('follow').addEventListener('click', () => setMode(follow ? null : 'follow'));
+$('spin').addEventListener('click', () => setMode(world.controls().autoRotate ? null : 'spin'));
 // dragging the globe hands control back to the user
-world.controls().addEventListener('start', () => { follow = false; $('follow').setAttribute('aria-pressed', false); });
+world.controls().addEventListener('start', () => { if (follow) setMode(null); });
 
 /* ---------- go ---------- */
 poll(); setInterval(poll, 3000);
