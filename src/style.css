@@ -45,7 +45,19 @@ input:focus-visible { outline:none; }
 #banner { position:fixed; top:24px; left:50%; transform:translateX(-50%); z-index:5; max-width:min(520px, calc(100vw - 40px)); padding:10px 20px; font-size:.78rem; font-weight:400; letter-spacing:.06em; text-align:center; color:var(--fg); background:#0b0f14; border:1px solid rgba(255,255,255,.4); border-radius:999px; box-shadow:0 4px 24px rgba(0,0,0,.6); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
 #banner.soon { border-color:#fff; }
 #banner.now { background:var(--fg); color:#05070a; border-color:var(--fg); animation:none; }
-@media (max-width:700px) { #banner { top:auto; bottom:20px; } #hud { top:12px; left:12px; } }
+#sheet { display:none; }
+@media (max-width:700px) {
+  #banner { top:12px; max-width:calc(100vw - 24px); }
+  #hud { top:auto; left:0; right:0; bottom:0; width:100%; max-height:46vh; overflow-y:auto; overscroll-behavior:contain; padding:6px 18px calc(16px + env(safe-area-inset-bottom)); border-radius:18px 18px 0 0; border-width:1px 0 0; }
+  #hud.collapsed { max-height:none; overflow:hidden; }
+  #hud.collapsed > :not(#sheet):not(h1):not(#over) { display:none; }
+  #sheet { display:block; width:100%; height:22px; padding:0; border:0; position:relative; }
+  #sheet::after { content:""; position:absolute; left:50%; top:8px; width:40px; height:4px; margin-left:-20px; border-radius:2px; background:rgba(255,255,255,.35); }
+  #over { margin-bottom:16px; }
+  dl { gap:14px 16px; }
+  .btns { margin-top:20px; }
+  #hud.collapsed #over { margin-bottom:4px; }
+}
 
 .loc { display:block; width:100%; margin-top:24px; padding:10px; text-align:center; color:var(--fg); border:1px solid rgba(255,255,255,.4); border-radius:999px; }
 .loc:hover { background:var(--fg); color:#05070a; }

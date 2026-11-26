@@ -41,7 +41,19 @@ const world = Globe()($('globe'))
 
 world.controls().autoRotateSpeed = 0.6;
 world.pointOfView({ lat: 20, lng: 78, altitude: 2.4 });
-window.addEventListener('resize', () => world.width(innerWidth).height(innerHeight));
+// On phones the HUD is a bottom sheet; the globe fills the space above it so nothing covers the Earth/ISS.
+const globeEl = $('globe'), hudEl = $('hud'), phone = matchMedia('(max-width:700px)');
+function fitGlobe() {
+  globeEl.style.bottom = phone.matches ? hudEl.offsetHeight + 'px' : '0';
+  world.width(globeEl.clientWidth).height(globeEl.clientHeight);
+}
+new ResizeObserver(fitGlobe).observe(hudEl);
+window.addEventListener('resize', fitGlobe);
+$('sheet').addEventListener('click', () => {
+  const c = hudEl.classList.toggle('collapsed');
+  $('sheet').setAttribute('aria-expanded', !c);
+});
+fitGlobe();
 
 function makeISS() {
   const g = new THREE.Group();

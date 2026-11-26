@@ -10,6 +10,7 @@
   <div id="globe"></div>
   <div id="banner" role="status" aria-live="polite" hidden></div>
   <aside id="hud">
+    <button id="sheet" aria-label="Toggle details" aria-expanded="true"></button>
     <h1><span id="live" class="dot"></span>ISS</h1>
     <p id="over">Locating…</p>
     <dl>
@@ -43,7 +44,7 @@
   <div id="welcome" role="dialog" hidden aria-modal="true" aria-labelledby="w-title">
     <form id="w-card" autocomplete="off">
       <h2 id="w-title">Where are you?</h2>
-      <p>Tell us your location and we'll show where the ISS is relative to you: distance, direction to look, and when it next passes overhead.</p>
+      <p>Tell us your location and we'll show where the ISS is relative to you.</p>
       <button type="button" id="w-geo" class="primary">Use my current location</button>
       <div class="or">or search for a place</div>
       <div class="row">

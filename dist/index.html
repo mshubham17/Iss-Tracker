@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ISS Live Globe</title>
-  <script type="module" crossorigin src="/assets/index-DL6mXZAl.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DwUv9w2y.css">
+  <script type="module" crossorigin src="/assets/index-Cl0DjcAP.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CbTuWFLY.css">
 </head>
 <body>
   <div id="globe"></div>
   <div id="banner" role="status" aria-live="polite" hidden></div>
   <aside id="hud">
+    <button id="sheet" aria-label="Toggle details" aria-expanded="true"></button>
     <h1><span id="live" class="dot"></span>ISS</h1>
     <p id="over">Locating…</p>
     <dl>
@@ -33,18 +34,18 @@
       <p id="u-pass-detail" class="muted"></p>
     </section>
     <div id="crew"></div>
+    <button id="change" class="loc">Enter your location</button>
     <div class="btns">
       <button id="follow" aria-pressed="true">Follow</button>
       <button id="orbit" aria-pressed="true">Orbit</button>
       <button id="spin" aria-pressed="false">Rotate</button>
-      <button id="change" hidden>Location</button>
     </div>
     <p id="status" class="muted"></p>
   </aside>
-  <div id="welcome" role="dialog" aria-modal="true" aria-labelledby="w-title">
+  <div id="welcome" role="dialog" hidden aria-modal="true" aria-labelledby="w-title">
     <form id="w-card" autocomplete="off">
       <h2 id="w-title">Where are you?</h2>
-      <p>Tell us your location and we'll show where the ISS is relative to you: distance, direction to look, and when it next passes overhead.</p>
+      <p>Tell us your location and we'll show where the ISS is relative to you.</p>
       <button type="button" id="w-geo" class="primary">Use my current location</button>
       <div class="or">or search for a place</div>
       <div class="row">
@@ -53,7 +54,7 @@
       </div>
       <ul id="w-results"></ul>
       <p id="w-msg" class="muted" role="status"></p>
-      <button type="button" id="w-skip" class="link">Skip for now</button>
+      <button type="button" id="w-skip" class="link">Close</button>
     </form>
   </div>
 </body>
