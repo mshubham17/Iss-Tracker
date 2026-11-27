@@ -1,6 +1,9 @@
 import Globe from 'globe.gl';
 import * as THREE from 'three';
 import * as sat from 'satellite.js';
+import { inject } from '@vercel/analytics';
+
+inject();
 
 const API = 'https://api.wheretheiss.at/v1/satellites/25544';
 const R = 6371;
